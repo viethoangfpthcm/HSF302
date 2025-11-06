@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title style="font-size: 25px">SE196240 - Computer Management Page</title>
+</head>
+<body style="font-family: Tahoma, Geneva, sans-serif; font-size: 19px; background-color: #ffd966; color: white">
+<div th:if="${session.acc}" style="position: absolute; top: 10px; right: 20px; font-weight: bold; color: deeppink">
+    <span th:if="${session.acc}" th:text="'Hello ' + ${session.acc.email}"  ></span> <br>
+    <a th:href="@{'/logout'}" style="color: red; font-weight: bold;">Logout</a>
+</div>
+<h1>All laptop in shop</h1>
+<a th:href="@{'/laptop/new'}">New laptop</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>computer_id</th>
+        <th>computer_model</th>
+        <th>type</th>
+        <th>production_year</th>
+        <th>price</th>
+        <th>manufacturer_name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${laptops}">
+        <td th:text="${x.id}">???</td>
+        <td th:text="${x.model}">???</td>
+        <td th:text="${x.type}">???</td>
+        <td th:text="${x.year}">???</td>
+        <td th:text="${x.price}">???</td>  <!-- join table để lấy data bên cate -->
+        <td th:text="${x.manufacturer.name}">???</td>
+        <td>
+            <a th:href="@{'/laptop/edit/' + ${x.id}}">Edit</a> |
+            <a th:href="@{'/laptop/delete/' + ${x.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<span th:text="${error}" style="color: red"></span> <br>
+</body>
+</html>
+

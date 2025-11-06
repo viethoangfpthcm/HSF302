@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title style="font-size: 25px">SE196240 - Login Page</title>
+</head>
+<body style="font-family: Tahoma, Geneva, sans-serif; font-size: 19px; background-color: #ffd966; color: white">
+<h1>Login to the Laptop Shop System</h1>
+
+<span th:text="${error}" style="color: red"></span>
+<form th:action="@{'/doLogin'}" method="post" th:object="${acc}" >
+    <p>
+        <label for="email" style="color: white">Email: </label>
+        <input type="text" th:field="*{email}" id="email"  placeholder="Enter email address"/>
+    </p>
+    <p>
+        <label for="password" style="color: white">Password: </label>
+        <input type="password" th:field="*{password}" id="password" placeholder="Enter password"/>
+    </p>
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>
