@@ -41,11 +41,11 @@ public class AuthController {
 //        return "redirect:/laptop";
 //    }
 //
-//    @GetMapping("/logout")
-//    public String logout(RedirectAttributes redirectAttributes, HttpSession session) {
-//        session.removeAttribute("acc");
-//        session.invalidate();
-//        redirectAttributes.addFlashAttribute("acc", new User());
-//        return "redirect:/login";
-//    }
+    @GetMapping("/logout")
+    public String logout(RedirectAttributes redirectAttributes, HttpSession session) {
+        session.removeAttribute("acc");
+        session.invalidate();
+        redirectAttributes.addFlashAttribute("acc", new User());
+        return "redirect:/login";
+    }
 }
