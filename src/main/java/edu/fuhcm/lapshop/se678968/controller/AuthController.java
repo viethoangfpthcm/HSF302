@@ -21,26 +21,26 @@ public class AuthController {
         return "login";
     }
 
-//    @PostMapping("/doLogin")
-//    public String doLogin(@ModelAttribute("acc")User user, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
-//        User us = userService.getByEmail(user.getEmail());
-//        if(us == null){
-//            redirectAttributes.addFlashAttribute("error","email is incorrect");
-//            return "redirect:/login";
-//        }
-//        if(!us.getPassword().equals(user.getPassword())){
-//            redirectAttributes.addFlashAttribute("error","password is incorrect");
-//            redirectAttributes.addFlashAttribute("acc", user);
-//            return "redirect:/login";
-//        }
-//        if(!us.getRole().equals("Admin") && !us.getRole().equals("Staff")){
-//            redirectAttributes.addFlashAttribute("error","You don’t have permission to access this function!");
-//            return "redirect:/login";
-//        }
-//        session.setAttribute("acc",us);
-//        return "redirect:/laptop";
-//    }
-//
+    @PostMapping("/doLogin")
+    public String doLogin(@ModelAttribute("acc")User user, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
+        User us = userService.getByEmail(user.getEmail());
+        if(us == null){
+            redirectAttributes.addFlashAttribute("error","email is incorrect");
+            return "redirect:/login";
+        }
+        if(!us.getPassword().equals(user.getPassword())){
+            redirectAttributes.addFlashAttribute("error","password is incorrect");
+            redirectAttributes.addFlashAttribute("acc", user);
+            return "redirect:/login";
+        }
+        if(!us.getRole().equals("Admin") && !us.getRole().equals("Staff")){
+            redirectAttributes.addFlashAttribute("error","You don’t have permission to access this function!");
+            return "redirect:/login";
+        }
+        session.setAttribute("acc",us);
+        return "redirect:/laptop";
+    }
+
     @GetMapping("/logout")
     public String logout(RedirectAttributes redirectAttributes, HttpSession session) {
         session.removeAttribute("acc");
