@@ -5,5 +5,5 @@ import edu.fuhcm.lapshop.se678968.entity.User;
 public interface UserService {
     public void createUser(User user);
 
-    //public User getByEmail(String email);
+    public User getByEmail(String email);
 }
